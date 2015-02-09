@@ -10,6 +10,7 @@ public class BotonJugar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 	}
 	void OnMouseDown(){
 		Camera.main.audio.Stop ();
