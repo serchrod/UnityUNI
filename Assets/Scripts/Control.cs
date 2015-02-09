@@ -4,12 +4,14 @@ using System.IO;
 public class Control : MonoBehaviour {
 
 	public float fuerzaSalto = 100f;
-	
+	public float fuerzaLateral = 8f;
+
 	public bool enSuelo = true;
 	public Transform comprobadorSuelo;
 	private float comprobadorRadio = 0.3f;
 	public LayerMask mascaraSuelo;
 	private bool dobleSalto = false;
+	private bool side = false;
 	private Animator animator;
 	private bool corriendo = false;
 	public float velocidad = 1f;
@@ -36,49 +38,67 @@ public class Control : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Flecha arriba
-		if(Input.GetKeyDown(KeyCode.UpArrow)){
-			if(corriendo){
-				// Hacemos que salte si puede saltar
-				if(enSuelo || !dobleSalto){
-					audio.Play();
-					rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fuerzaSalto);
-					if(!dobleSalto && !enSuelo){
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			if (corriendo) {
+			// Hacemos que salte si puede saltar
+				if (enSuelo || !dobleSalto) {
+					audio.Play ();
+					rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
+					if (!dobleSalto && !enSuelo) {
 						dobleSalto = true;
 					}
 				}
-			}else{
+			} else {
 				corriendo = true;
-				NotificationCenter.DefaultCenter().PostNotification(this,"personajeCorriendo");
+				NotificationCenter.DefaultCenter ().PostNotification (this, "personajeCorriendo");
 			}
-		}else if(Input.GetMouseButtonDown(0)){//Click Izquierdo
-			if(corriendo){
-				// Hacemos que salte si puede saltar
-				if(enSuelo || !dobleSalto){
-					audio.Play();
-					rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fuerzaSalto);
-					if(!dobleSalto && !enSuelo){
-						dobleSalto = true;
+		} else if (Input.GetMouseButtonDown (0)) {//Click Izquierdo
+					if (corriendo) {
+						// Hacemos que salte si puede saltar
+						if (enSuelo || !dobleSalto) {
+							audio.Play ();
+							rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
+							if (!dobleSalto && !enSuelo) {
+								dobleSalto = true;
+							}
+						}
+					} else {
+						corriendo = true;
+						NotificationCenter.DefaultCenter ().PostNotification (this, "personajeCorriendo");
 					}
-				}
-			}else{
-				corriendo = true;
-				NotificationCenter.DefaultCenter().PostNotification(this,"personajeCorriendo");
-			}
-		}else if(Input.GetKeyDown(KeyCode.Space)){//GamePad X
-			if(corriendo){
-				// Hacemos que salte si puede saltar
-				if(enSuelo || !dobleSalto){
-					audio.Play();
-					rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fuerzaSalto);
-					if(!dobleSalto && !enSuelo){
+		} else if (Input.GetKeyDown (KeyCode.Space)) {//GamePad X
+			if (corriendo) {
+			// Hacemos que salte si puede saltar
+				if (enSuelo || !dobleSalto) {
+					audio.Play ();
+					rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
+					if (!dobleSalto && !enSuelo) {
 						dobleSalto = true;
 					}
 					//Activar Vibracion.
-				}
-			}else{
+					}
+			} else {
 				corriendo = true;
-				NotificationCenter.DefaultCenter().PostNotification(this,"personajeCorriendo");
+				NotificationCenter.DefaultCenter ().PostNotification (this, "personajeCorriendo");
 			}
+		} else if (Input.GetKeyDown (KeyCode.JoystickButton0)) {//GamePad X
+				if (corriendo) {
+				// Hacemos que salte si puede saltar
+					if (enSuelo || !dobleSalto) {
+						audio.Play ();
+						rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
+						if (!dobleSalto && !enSuelo) {
+							dobleSalto = true;
+						}
+						//Activar Vibracion.
+					}
+				} else {
+					corriendo = true;
+					NotificationCenter.DefaultCenter ().PostNotification (this, "personajeCorriendo");
+				}
 		}
+		//Termina Salto
+
 	}
+	//Update
 }

@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: fa8134262bff32a49b9402f2b9566592
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: botones_0
+    21300002: botones_1
+    21300004: botones_2
+    21300006: botones_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -42,6 +46,46 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: botones_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 1572
+        width: 172
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: botones_1
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 1080
+        width: 220
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: botones_2
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 1080
+        width: 221
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: botones_3
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 791
+        width: 613
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
