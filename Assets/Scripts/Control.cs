@@ -11,7 +11,6 @@ public class Control : MonoBehaviour {
 	private float comprobadorRadio = 0.3f;
 	public LayerMask mascaraSuelo;
 	private bool dobleSalto = false;
-	private bool side = false;
 	private Animator animator;
 	private bool corriendo = false;
 	public float velocidad = 1f;
@@ -66,7 +65,7 @@ public class Control : MonoBehaviour {
 						corriendo = true;
 						NotificationCenter.DefaultCenter ().PostNotification (this, "personajeCorriendo");
 					}
-		} else if (Input.GetKeyDown (KeyCode.Space)) {//GamePad X
+		} else if (Input.GetKeyDown (KeyCode.Space)) {//Tecla Espaciadora
 			if (corriendo) {
 			// Hacemos que salte si puede saltar
 				if (enSuelo || !dobleSalto) {

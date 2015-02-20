@@ -7,13 +7,18 @@ public class PlayerController : MonoBehaviour {
 	//Curso del personaje
 	private float curspeed, targetspeed;
 	//Velocidad de movimiento del personaje
-	private float Maxfowardspeed= 1, Maxbackwardspeed= -1;
+	//private float Maxfowardspeed= 1, Maxbackwardspeed= -1;
 	//private int Jump=10, stand=0;
 	//velocidad de disparo
 	protected float shootrate=0.2f;
 	protected float elapsedtime;
 	public int counter=3;
+	private Animator animator;
+	public bool hadouken = false;
 
+	void Awake(){
+		animator = GetComponent<Animator>();
+	}
 
 	void Start () {
 		// es el vertice de donde salen los hadouken
@@ -24,7 +29,9 @@ public class PlayerController : MonoBehaviour {
 }
 
 
-
+	void FixedUpdate(){
+		animator.SetBool("hadouken", hadouken);
+	}
 	void Update () {
 		updateweapon ();
 			//updatecontrol ();
@@ -57,6 +64,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (Input.GetKey(KeyCode.X))
 		{
+			hadouken = true;
 			elapsedtime += Time.deltaTime;
 			if (elapsedtime >= shootrate)
 			{
@@ -73,6 +81,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		}else if (Input.GetKey(KeyCode.JoystickButton2))
 		{
+			hadouken = true;
 			elapsedtime += Time.deltaTime;
 			if (elapsedtime >= shootrate)
 			{
@@ -87,6 +96,8 @@ public class PlayerController : MonoBehaviour {
 					
 				}
 			}
+		}else {
+			hadouken = false;
 		}
  }
 }

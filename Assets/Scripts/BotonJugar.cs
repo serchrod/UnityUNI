@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class BotonJugar : MonoBehaviour {
-
+	public string Escena;
 	// Use this for initialization
 	void Start () {
 	
@@ -18,6 +18,6 @@ public class BotonJugar : MonoBehaviour {
 		Invoke ("CargarNivelJuego", audio.clip.length);
 	}
 	void CargarNivelJuego(){
-		Application.LoadLevel ("GameScene");
+		Application.LoadLevel (Escena);
 	}
 }
