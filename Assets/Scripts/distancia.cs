@@ -9,6 +9,7 @@ public class distancia : MonoBehaviour {
 	protected Vector2 heading;
 	protected float distanciaMagnitud;
 	public int dista;
+	public int ajustarDistancia;
 	public TextMesh dis;
 	void Start(){
 	
@@ -27,7 +28,7 @@ public class distancia : MonoBehaviour {
 		anclaTransform = Ancla.transform;
 		heading = anclaTransform.position - playerTransform.position;
 		distanciaMagnitud = heading.magnitude;
-		dista = (Mathf.RoundToInt(distanciaMagnitud)-2);
+		dista = (Mathf.RoundToInt(distanciaMagnitud)- ajustarDistancia);
 
 	}
 }
