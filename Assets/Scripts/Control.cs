@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+/*Script del control del personaje.
+ * Las variables publicas se usan para vincular objetos de la escena.
+ * 
+*/
 public class Control : MonoBehaviour {
 
 	public float fuerzaSalto = 100f;

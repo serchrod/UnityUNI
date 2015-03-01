@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/*Script del scrollParalax el moviento del fondo.
+ * Las variables publicas se usan para vincular objetos de la escena.
+ * 
+*/
 public class ScrolParalax : MonoBehaviour {
-	public bool iniciarEnMovimiento = false;
-	public float velocidad = 0f;
+	public bool iniciarEnMovimiento = false;// Inicializacion del movimiento de los sprites.
+	public float velocidad = 0f;// Velocidad del movimiento.
 	private bool EnMoviento = false;
 	private float tiempoInico = 0f;
 	void Start () {
