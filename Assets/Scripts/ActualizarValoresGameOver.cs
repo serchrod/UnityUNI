@@ -20,6 +20,7 @@ public class ActualizarValoresGameOver : MonoBehaviour {
 	//Metodo OnEneable que cuando se encuentra disponible actualiza el contenido de los elementos de tipo Texto.
 	void OnEnable(){
 		total.text = puntuacion.puntuacion.ToString ();// Actualiza el valor del total.
-		record.text = EstadoJuego.estadoJuego.puntuacionMaxima.ToString ();// Actualiza el valor del record.
+		//record.text = EstadoJuego.estadoJuego.puntuacionMaxima.ToString ();// Actualiza el valor del record.
+		record.text = XmlEstado.xmlEstado.puntuacionMax.ToString();// Actualiza el valor del record.
 	}
 }

@@ -15,9 +15,11 @@ public class Puntuacion : MonoBehaviour {
 	}
 
 	void personajeMurio(Notification notificacion){
-		if(puntuacion > EstadoJuego.estadoJuego.puntuacionMaxima){// Valida que la puntuacion actual se mayor que el record.
-			EstadoJuego.estadoJuego.puntuacionMaxima = puntuacion;// Actualiza el valor del record con la puntuacion actual.
-			EstadoJuego.estadoJuego.Guardar();// Guarda los datos.
+		if(puntuacion > XmlEstado.xmlEstado.puntuacionMax){// Valida que la puntuacion actual se mayor que el record.
+			XmlEstado.xmlEstado.puntuacionMax = puntuacion;// Actualiza el valor del record con la puntuacion actual.
+			XmlEstado.xmlEstado.WriteToXml();// Guarda los datos.
+			//EstadoJuego.estadoJuego.puntuacionMaxima = puntuacion;// Actualiza el valor del record con la puntuacion actual.
+			//EstadoJuego.estadoJuego.Guardar();// Guarda los datos.
 		}
 	}
 
