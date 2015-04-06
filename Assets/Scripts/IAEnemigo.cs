@@ -4,7 +4,7 @@ using System.Collections;
 public class IAEnemigo : MonoBehaviour{
 
 	public float targetspeed=1f,curspeed;
-	private int counterframe=0;
+	//private int counterframe=0;
 	public Transform wandar;
 	protected Vector2 destPos;
 	protected Transform PlayerTransform;

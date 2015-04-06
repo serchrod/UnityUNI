@@ -5,22 +5,19 @@ using System.Collections;
  * 
 */
 public class ActualizarValoresGameOver : MonoBehaviour {
-
-	public TextMesh total;// Elemento Texto que mostrara la puntiacion alcanzada.
+	
+	public TextMesh distan;// Texto que muestra la distancia recorrida.
 	public TextMesh record;// Elemento Texto que mostrara el record maximo del juego.
+	public TextMesh muertes;// Texto que muestra las muertes.
+	public TextMesh puntos;// Texto que muestra los puntos.
 	public Puntuacion puntuacion;// Variable de tipo Puntuacion que almacenara la puntuacion de la partida.
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public distancia Distancia;
+
 	//Metodo OnEneable que cuando se encuentra disponible actualiza el contenido de los elementos de tipo Texto.
 	void OnEnable(){
-		total.text = puntuacion.puntuacion.ToString ();// Actualiza el valor del total.
-		//record.text = EstadoJuego.estadoJuego.puntuacionMaxima.ToString ();// Actualiza el valor del record.
+		puntos.text = puntuacion.puntuacion.ToString ();// Actualiza el valor del total.
+		distan.text = Distancia.dista.ToString();
 		record.text = XmlEstado.xmlEstado.puntuacionMax.ToString();// Actualiza el valor del record.
+		muertes.text = XmlEstado.xmlEstado.dies.ToString();// Muestra las muertes en el objeto texto.
 	}
 }

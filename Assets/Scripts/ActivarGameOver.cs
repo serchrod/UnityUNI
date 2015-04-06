@@ -6,7 +6,8 @@ using System.Collections;
 */
 public class ActivarGameOver : MonoBehaviour {
 
-	public GameObject CameraGameOver;// GameObject de la camara que se quiere llamar.
+	public GameObject CamaraGameOver;// GameObject de la camara que se quiere llamar.
+	public GameObject botonPausa;
 	public AudioClip gameOverClip;// AudioClip del audio que se quiere llamar.
 
 	void Start () {
@@ -21,7 +22,9 @@ public class ActivarGameOver : MonoBehaviour {
 		audio.clip = gameOverClip;// Se camabia el audio por el audio del Game Over.
 		audio.loop = false;// La repeticion del audio se desactiva.
 		audio.Play ();// Se reproduce la pista actualizada
-		CameraGameOver.SetActive(true);// Se activa la camara del Game Over.
+		//CamaraMain.SetActive (false);
+		botonPausa.SetActive (false);
+		CamaraGameOver.SetActive(true);// Se activa la camara del Game Over.
 	}
 
 	void Update () {

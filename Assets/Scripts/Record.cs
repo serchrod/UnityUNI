@@ -8,9 +8,7 @@ public class Record : MonoBehaviour {
 	public TextMesh record;
 	void Start () {
 		//Muestra en el objeto texto el record del juego.
-		//record.text = EstadoJuego.estadoJuego.puntuacionMaxima.ToString();
-		record.text = XmlEstado.xmlEstado.puntuacionMax.ToString();
-		//Debug.Log (XmlEstado.xmlEstado.puntuacionMax);
+		record.text = XmlEstado.xmlEstado.puntuacionMax.ToString();// Actualiza el valor del record.
 	}
 	
 	// Update is called once per frame

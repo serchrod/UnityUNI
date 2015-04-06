@@ -55,20 +55,6 @@ public class Control : MonoBehaviour {
 				corriendo = true;
 				NotificationCenter.DefaultCenter ().PostNotification (this, "personajeCorriendo");
 			}
-		} else if (Input.GetMouseButtonDown (0)) {//Click Izquierdo
-					if (corriendo) {
-						// Hacemos que salte si puede saltar
-						if (enSuelo || !dobleSalto) {
-							audio.Play ();
-							rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
-							if (!dobleSalto && !enSuelo) {
-								dobleSalto = true;
-							}
-						}
-					} else {
-						corriendo = true;
-						NotificationCenter.DefaultCenter ().PostNotification (this, "personajeCorriendo");
-					}
 		} else if (Input.GetKeyDown (KeyCode.Space)) {//Tecla Espaciadora
 			if (corriendo) {
 			// Hacemos que salte si puede saltar
@@ -104,4 +90,21 @@ public class Control : MonoBehaviour {
 
 	}
 	//Update
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	public void jump(){
+		if (corriendo) {
+			// Hacemos que salte si puede saltar
+			if (enSuelo || !dobleSalto) {
+				audio.Play ();
+				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
+				if (!dobleSalto && !enSuelo) {
+					dobleSalto = true;
+				}
+			}
+		} else {
+			corriendo = true;
+			NotificationCenter.DefaultCenter ().PostNotification (this, "personajeCorriendo");
+		}
+	}
 }

@@ -16,6 +16,17 @@ public class distancia : MonoBehaviour {
 	public int dista;// Variable que almacena el valor redondeado de la magnitud.
 	public int ajustarDistancia;// Variable que corrije el valor inicial de la distancia.
 	public TextMesh dis;// Variable del objeto texto que recibe la distancia.
+	public distancia Distancia;
+
+	void Awake(){
+		if(Distancia==null){
+			Distancia = this;
+			DontDestroyOnLoad(gameObject);
+		}else if(Distancia!=this){
+			Destroy(gameObject);
+		}
+	}
+
 	void Start(){
 	
 	}

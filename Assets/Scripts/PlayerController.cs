@@ -38,28 +38,6 @@ public class PlayerController : MonoBehaviour {
 	
 	}
 
-	/*protected void updatecontrol(){
-		if (Input.GetKey (KeyCode.RightArrow)) {
-						targetspeed = Maxfowardspeed;
-				} else if (Input.GetKey (KeyCode.LeftArrow)) {
-						targetspeed = Maxbackwardspeed;
-						
-		}
-
-		if (Input.GetKey (KeyCode.UpArrow)) {
-			targetspeed = Jump;
-			//transforma la fuerza del salto y lo lleva hacia arriba
-			transform.Translate(Vector2.up * Time.deltaTime * curspeed);
-	    }
-		if (Input.GetKey (KeyCode.DownArrow)) {
-			targetspeed=stand;
-		}
-
-		// por formula de la propiedad del objeto LERP, calcula la velocidad de movimiento
-		curspeed = Mathf.Lerp(curspeed, targetspeed, 7.0f * Time.deltaTime);
-		//traslada el objeto multiplicando su propia distancia que es obtenidad por el vector2.right
-		transform.Translate(Vector2.right * Time.deltaTime * curspeed);
-	}*/
 	protected void updateweapon()
 	{
 		if (Input.GetKey(KeyCode.X))
