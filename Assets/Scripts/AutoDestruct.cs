@@ -4,12 +4,9 @@ using System.Collections;
  * Las variables publicas se usan para vincular objetos de la escena.
  * 
 */
-public class AutoDestruct : MonoBehaviour
-{   //destruye
+public class AutoDestruct : MonoBehaviour{
     public float DestructTime = 0.10f;// Tiempo para auto destruccion 0.1 equivale a un segundo.
-
-    void Start()
-    {
+    void Start(){
         Destroy(gameObject, DestructTime);// Destruye el game object.
     }
 }

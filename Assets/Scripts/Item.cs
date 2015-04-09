@@ -8,14 +8,7 @@ public class Item : MonoBehaviour {
 	public int puntosIncrementar = 5;// Puntaje del objeto.
 	public AudioClip itemSoundClip;// Audio al recoger el objeto.
 	public float itemSoundLevel = 1f;// Volumen del sonido.
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Metodo OnTriggerEnter2D para colliders 2D
 	void OnTriggerEnter2D(Collider2D collider){
 		if (collider.tag == "Player") {// Valida que el objeto tenga etiqueta "Player".

@@ -6,10 +6,6 @@ public class PlayerController : MonoBehaviour {
 	private Transform bulletspawnpoint;
 	//Curso del personaje
 	private float curspeed, targetspeed;
-	//Velocidad de movimiento del personaje
-	//private float Maxfowardspeed= 1, Maxbackwardspeed= -1;
-	//private int Jump=10, stand=0;
-	//velocidad de disparo
 	protected float shootrate=0.2f;
 	protected float elapsedtime;
 	public int counter=3;
@@ -19,33 +15,28 @@ public class PlayerController : MonoBehaviour {
 	void Awake(){
 		animator = GetComponent<Animator>();
 	}
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void Start () {
 		// es el vertice de donde salen los hadouken
 		bulletspawnpoint = gameObject.transform.GetChild (0);
 		/*se hace referencia al child del gameobject, se pone como 0 ya que se toma como el primero de el game
         si existiera otro se pone como (1)
 		 */
-}
-
-
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void FixedUpdate(){
 		animator.SetBool("hadouken", hadouken);
 	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void Update () {
-		updateweapon ();
-			//updatecontrol ();
-	
+		updateWeapon ();
 	}
-
-	protected void updateweapon()
-	{
-		if (Input.GetKey(KeyCode.X))
-		{
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	protected void updateWeapon(){
+		if (Input.GetKey(KeyCode.X)){
 			hadouken = true;
 			elapsedtime += Time.deltaTime;
-			if (elapsedtime >= shootrate)
-			{
+			if (elapsedtime >= shootrate){
 				// resetea el  tiempo transcurrido
 				elapsedtime = 0.0f;
 				//instancia la bala
@@ -54,15 +45,12 @@ public class PlayerController : MonoBehaviour {
 				Instantiate(Bullet, bulletspawnpoint.position, 
 				            bulletspawnpoint.rotation);
 					print (counter);
-
-			}
-		}
-		}else if (Input.GetKey(KeyCode.JoystickButton2))
-		{
+			    }
+		    }
+		}else if (Input.GetKey(KeyCode.JoystickButton2)){
 			hadouken = true;
 			elapsedtime += Time.deltaTime;
-			if (elapsedtime >= shootrate)
-			{
+			if (elapsedtime >= shootrate){
 				// resetea el  tiempo transcurrido
 				elapsedtime = 0.0f;
 				//instancia la bala

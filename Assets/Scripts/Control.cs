@@ -6,10 +6,8 @@ using System.IO;
  * 
 */
 public class Control : MonoBehaviour {
-
 	public float fuerzaSalto = 100f;
 	public float fuerzaLateral = 8f;
-
 	public bool enSuelo = true;
 	public Transform comprobadorSuelo;
 	private float comprobadorRadio = 0.3f;
@@ -21,11 +19,7 @@ public class Control : MonoBehaviour {
 	void Awake(){
 		animator = GetComponent<Animator>();
 	}
-
-	void Start () {
-		
-	}
-	
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void FixedUpdate(){
 		if (corriendo) {
 			rigidbody2D.velocity = new Vector2 (velocidad, rigidbody2D.velocity.y);
@@ -37,8 +31,6 @@ public class Control : MonoBehaviour {
 			dobleSalto = false;
 		}
 	}
-
-	// Update is called once per frame
 	void Update () {
 		//Flecha arriba
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
@@ -79,7 +71,6 @@ public class Control : MonoBehaviour {
 						if (!dobleSalto && !enSuelo) {
 							dobleSalto = true;
 						}
-						//Activar Vibracion.
 					}
 				} else {
 					corriendo = true;
@@ -87,11 +78,9 @@ public class Control : MonoBehaviour {
 				}
 		}
 		//Termina Salto
-
 	}
 	//Update
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 	public void jump(){
 		if (corriendo) {
 			// Hacemos que salte si puede saltar

@@ -7,12 +7,6 @@ using System.Collections;
 public class CargarEscenaNoBoton : MonoBehaviour {
 
 	public string Escena;// Nombre del archivo de la esena.
-
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.JoystickButton1)){// Valida input desde joistick.
 			Camera.main.audio.Stop ();// Detiene el audio de la camara.

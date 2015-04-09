@@ -5,16 +5,6 @@ using System.Collections;
  * 
 */
 public class Destructor : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 	// Metodo OnTriggerEnter2D para colliders 2D
 	void OnTriggerEnter2D(Collider2D otro){
 		if (otro.tag == "Player") {// Valida que el objeto tenga etiqueta "Player".

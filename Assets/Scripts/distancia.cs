@@ -26,20 +26,15 @@ public class distancia : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-
-	void Start(){
-	
-	}
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void Update() {
 		medida ();// Llamada a a funcion de medicion.
 		dis.text = dista.ToString () + "m";// Retorno de la distanca al objeto de texto, formateando a String.
 	}
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void medida(){
 		Jugador = GameObject.FindGameObjectWithTag("Player");//Obteniendo el GameObject del personaje.
 		Ancla = GameObject.FindGameObjectWithTag("Ancla");//Obteniendo el GameObject del ancla.
-
 		playerTransform = Jugador.transform;//Obteniendo la propiedad transform del GameObject del personaje.
 		anclaTransform = Ancla.transform;//Obteniendo la propiedad transform del GameObject del ancla.
 		heading = anclaTransform.position - playerTransform.position;// Calculando la magnitud de la distancia.

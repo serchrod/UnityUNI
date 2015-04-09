@@ -9,6 +9,7 @@ public class ScrolParalax : MonoBehaviour {
 	public float velocidad = 0f;// Velocidad del movimiento.
 	private bool EnMoviento = false;
 	private float tiempoInico = 0f;
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void Start () {
 		NotificationCenter.DefaultCenter ().AddObserver (this, "personajeCorriendo");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "personajeMurio");
@@ -16,14 +17,16 @@ public class ScrolParalax : MonoBehaviour {
 			EnMoviento = true;
 		}
 	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void personajeMurio(){
 		EnMoviento = false;
 	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void personajeCorriendo(){
 		EnMoviento = true;
 		tiempoInico = Time.time;
 	}
-	// Update is called once per frame
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void Update () {
 		if (EnMoviento) {
 			renderer.material.mainTextureOffset = new Vector2(((Time.time - tiempoInico) * velocidad) %1, 0);

@@ -5,11 +5,9 @@ using System.Collections;
  * 
 */
 public class ActivarGameOver : MonoBehaviour {
-
 	public GameObject CamaraGameOver;// GameObject de la camara que se quiere llamar.
 	public GameObject botonPausa;
 	public AudioClip gameOverClip;// AudioClip del audio que se quiere llamar.
-
 	void Start () {
 		/*
 		 * Se crea un observador del estado "personajeMurio" 
@@ -25,9 +23,5 @@ public class ActivarGameOver : MonoBehaviour {
 		//CamaraMain.SetActive (false);
 		botonPausa.SetActive (false);
 		CamaraGameOver.SetActive(true);// Se activa la camara del Game Over.
-	}
-
-	void Update () {
-	
 	}
 }

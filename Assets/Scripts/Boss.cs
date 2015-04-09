@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-//interpretaremos la inteligencia artificial como una maquina de estados.
+
+// Interpretaremos la inteligencia artificial como una maquina de estados.
 public class Boss : FSM {
-
-
-	//se nombran los estados de la maquina
-	public enum fsmstate{
+	//Se nombran los estados de la maquina
+	public enum fsmState{
 		None,
 		persecusion,
 		rayo,
@@ -13,153 +12,126 @@ public class Boss : FSM {
 		brinco,
 		stands,
 		retroceder,
-		muerte,
 	}
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Variable que contiene las animaciones.
 	Animator animador;
-	//se declara la variable del mismo estado del enum
-	public fsmstate estado;
-	// se declara el prefabs o municion que se utilizara para el antagonista. Se utiliza publico para que editable 
+	// Se declara la variable del mismo estado del enum fsmState.
+	public fsmState estado;
+	// Se declara el prefabs o municion que se utilizara para el antagonista.
 	public GameObject beam;
-	// se declara la variable que controlara el estado del antagonista, se recomienda utilizar una variable del tipo booleano
-	//private bool muerte= false;
 	// se declara unos de los atibutos mas importantes, la salud del antagonista
 	private float curspeed;
-	public int salud;
 	public float Distancia = 0f;
 	public bool Pego = false;
 	public bool ataque = false;
+	public float tiempo= 0.5f;
 	/* una vez declarado los atributos del antagonista se comienza a crear los estados de la maquina finita.
     sobreescribiremos el metodo que se encuentra en FSM(clase padre).
    */
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void Awake (){
+		// Se hace instanciacion de las animaciones.
 		animador = GetComponent <Animator>();
 	}
-	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	protected override void Initialize(){
-		// se asigna el primer estado, el cual es el de persecusion
-		estado = fsmstate.persecusion;
-		// se le asigna la velocidad
+		// Se asigna el primer estado, el cual es el de persecusion.
+		estado = fsmState.persecusion;
+		// Se le asigna la velocidad
 		curspeed = 6.0f;
-		// se reasigna como falso debido que le  decimos al compilador que mientra este en persecusion nunca podra estar muerto
-		//muerte = false;
-		//es el tiempo trasncurrido, se encuentra en fsm ya que boss se hereda de esta
+		// Es el tiempo trasncurrido, se encuentra en fsm ya que boss se hereda de esta clase.
 		elapsedTime = 0.0f;
-		// la salud inicial del antagonista
-		salud = 2;
 		shootRate = 0.5f;
-		// esta instancia busca al objeto player
+		// Esta instancia busca al objeto player
 		GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+		// Accedemos a la propiedad transform del "Player".
 		playerTransform = objPlayer.transform;
+		// Accedemos a la propiedad transform del primer objeto hijo para se usado como posicion del spawn.
 		bulletSpawnPoint = gameObject.transform.GetChild (0);
 	}
-	protected override void FSMUpdate()
-	{   //los diferentes estados que puede tomar la inteligencia artificial con respecto a la razon
-		switch (estado)
-		{
-		case fsmstate.persecusion: Updatepersecusion(); break;
-		case fsmstate.retroceder: Updateretroceder(); break;
-		case fsmstate.rayo: Updaterayo(); break;
-		case fsmstate.espada: Updateespada(); break;
-		case fsmstate.brinco: Updatebrinco(); break;
-		case fsmstate.stands: Updatestand(); break;
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	protected override void FSMUpdate(){   
+		// Los diferentes estados que puede tomar la inteligencia artificial.
+		switch (estado){
+			case fsmState.persecusion: UpdatePersecusion(); break;
+			case fsmState.retroceder: UpdateRetroceder(); break;
+			case fsmState.rayo: UpdateRayo(); break;
+			case fsmState.espada: UpdateEspada(); break;
+			case fsmState.brinco: UpdateBrinco(); break;
+			case fsmState.stands: UpdateStand(); break;
 		}	
-		//el tiempo transcurrido
+		// El tiempo transcurrido
 		elapsedTime += Time.deltaTime;
-		if (salud <= 0) {
-			Updatemuerte();
-		}
 	}
-	
-	protected void Updatepersecusion()
-	{
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	protected void UpdatePersecusion(){
 		destPos = playerTransform.position;
 		//mantiene la persecusion
 		curspeed = 6.0f;
-		if (Vector2.Distance(transform.position, destPos) <= 10.0f)
-		{
+		if (Vector2.Distance(transform.position, destPos) <= 10.0f){
 			print("Me encuentro en estado stand y cambiare a persecusion");
+			//! Hay que modificar aca para que puede perseguir en ambas direcciones.
 			transform.Translate(Vector3.left * Time.deltaTime * curspeed);
 		}
-		// decide si esta cerca cambia al estado de rastreo
-		if (Vector2.Distance(transform.position, playerTransform.position) <= 10.0f)
-		{	
+		// Decide si esta cerca cambia al estado de ataque
+		if (Vector2.Distance(transform.position, playerTransform.position) <= 10.0f){	
 			print("cambio a modo de ataque");
 			ataque = true;
 			animador.SetBool ("Cerca",ataque);
-			estado= fsmstate.espada;
-		
-			
+			estado= fsmState.espada;
 		}
-		
-		//transform.Translate(Vector3.left * Time.deltaTime * curspeed);
 	}
-	
-	protected void Updateespada(){
-	
-		
-		transform.Translate(Vector3.right * Time.deltaTime * curspeed);
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	protected void UpdateEspada(){
+		transform.Translate(Vector3.left * Time.deltaTime * curspeed);
 		if (Vector2.Distance(transform.position, playerTransform.position) <= 2.0f)
 		{
 			print("cambio a modo de retroceso");
 			Pego= true;
 			animador.SetBool ("Pego",Pego);
-			estado= fsmstate.retroceder;
-			
+			estado= fsmState.retroceder;	
 		}
-		if (Vector2.Distance(transform.position, playerTransform.position) == 10.0f)
-		{
+		if (Vector2.Distance(transform.position, playerTransform.position) == 10.0f){
 			curspeed=0;
 		}
-		
-		
 	}
-	
-	protected void Updatebrinco(){
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	protected void UpdateBrinco(){
 		print ("Estoy brincando");
 	}
-	protected void Updaterayo(){
+	protected void UpdateRayo(){
 		print ("kameha");
 	}
-	
-	protected void Updateretroceder(){
-		transform.Translate(Vector3.left * Time.deltaTime * curspeed);
-		if (Vector2.Distance(transform.position, playerTransform.position)>= 10.0f)
-		{
-			estado = fsmstate.stands;
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	protected void UpdateRetroceder(){
+		transform.Translate(Vector3.right * Time.deltaTime * curspeed);
+		if (Vector2.Distance(transform.position, playerTransform.position)>= 10.0f){
+			estado = fsmState.stands;
 			ShootBullet();
 		}
-	
 	}
-	
-	private float tiempo=0.5f;
-	protected void Updatemuerte(){
-		Destroy (gameObject, tiempo);
-	}
-	
-	protected void Updatestand(){
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	protected void UpdateStand(){
 		curspeed = 0;
 		transform.Translate(Vector3.left * Time.deltaTime * curspeed);
 		Pego = false ;
 		ataque = false;
 		animador.SetBool ("Cerca",ataque);
 		animador.SetBool ("Pego",Pego);
-		if(Vector2.Distance(transform.position, playerTransform.position) <=10.0f)
-		{
-			estado = fsmstate.persecusion;
-
+		if(Vector2.Distance(transform.position, playerTransform.position) <=10.0f){
+			estado = fsmState.persecusion;
 		}
 
 	}
-
-	protected void ShootBullet ()
-	{
-			if (elapsedTime >= shootRate)
-		{
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	protected void ShootBullet (){
+		if (elapsedTime >= shootRate){
 			Instantiate (beam, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
 			elapsedTime = 0.0f;
 		}
 	}
-	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	/* detecta las colision con los distintos elementos, en este caso detectara si el Player le arroja algun objeto que inflija 
       dano
 	 */
@@ -170,7 +142,6 @@ public class Boss : FSM {
         prefabs o colisionador que estamos utilizando, en este caso utilizaremos el Hadouken(tecnica de Ryu)
 		*/
 		if(collider.tag == "Hadouken"){
-			
 			NotificationCenter.DefaultCenter ().PostNotification (this, "impactado");
 		}
 	}

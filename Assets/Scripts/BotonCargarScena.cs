@@ -9,15 +9,6 @@ using UnityEngine.UI;
 public class BotonCargarScena : MonoBehaviour {
 
 	public string nombreEscenaCargar = "GameScene";// Nombre del archivo de escena.
-
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 	// Metodo OnMouseDown, cuando se presiona click.
 	void OnMouseDown(){
 		Camera.main.audio.Stop ();// Detiene el audio de la camara principal.
