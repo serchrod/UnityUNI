@@ -71,19 +71,30 @@ public class Mover : MonoBehaviour {
 		actualEscala.x *= -1;
 		transform.localScale = actualEscala;
 	}
-	/*
+
 	void OnTriggerEnter2D(Collider2D Bug)
 	{
-		if(Bug.tag == "EnemyShot")
+		if (Bug.tag == "EnemyShot") 
 		{
 			VidaPersonaje -= 20f;
-			if(VidaPersonaje == 0f)
+			if (VidaPersonaje <= 0f) 
 			{
-				muerte=true;
+				muerte = true;
+				animacion.SetBool ("Die", muerte);
+			}
+		}
+
+		if(Bug.tag == "EnemySuperShot")
+		{
+			VidaPersonaje -= 50f;
+			if(VidaPersonaje <= 0f)
+			{
+				muerte = true;
 				animacion.SetBool("Die",muerte);
+
 			}
 		}
 
 	}
-	*/
+
 }

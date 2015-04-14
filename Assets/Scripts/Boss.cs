@@ -69,7 +69,7 @@ public class Boss : FSM {
 		destPos = playerTransform.position;
 		//mantiene la persecusion
 		curspeed = 6.0f;
-		if (Vector2.Distance(transform.position, destPos) <= 15.0f){
+		if (Vector2.Distance(transform.position, destPos) <= 10.0f){
 			print("Me encuentro en estado stand y cambiare a persecusion");
 			//! Hay que modificar aca para que puede perseguir en ambas direcciones.
 			transform.Translate(Vector3.right * Time.deltaTime * curspeed);
