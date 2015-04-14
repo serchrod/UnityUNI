@@ -16,10 +16,10 @@ public class ActivarGameOver : MonoBehaviour {
 	}
 	//Metodo con Notification como parametro que se llama cuando el personaje muere..
 	void personajeMurio(Notification notificacion){
-		audio.Stop ();// Se detiene el audio del area.
-		audio.clip = gameOverClip;// Se camabia el audio por el audio del Game Over.
-		audio.loop = false;// La repeticion del audio se desactiva.
-		audio.Play ();// Se reproduce la pista actualizada
+		GetComponent<AudioSource>().Stop ();// Se detiene el audio del area.
+		GetComponent<AudioSource>().clip = gameOverClip;// Se camabia el audio por el audio del Game Over.
+		GetComponent<AudioSource>().loop = false;// La repeticion del audio se desactiva.
+		GetComponent<AudioSource>().Play ();// Se reproduce la pista actualizada
 		//CamaraMain.SetActive (false);
 		botonPausa.SetActive (false);
 		CamaraGameOver.SetActive(true);// Se activa la camara del Game Over.

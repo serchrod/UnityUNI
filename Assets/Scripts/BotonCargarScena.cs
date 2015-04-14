@@ -11,10 +11,10 @@ public class BotonCargarScena : MonoBehaviour {
 	public string nombreEscenaCargar = "GameScene";// Nombre del archivo de escena.
 	// Metodo OnMouseDown, cuando se presiona click.
 	void OnMouseDown(){
-		Camera.main.audio.Stop ();// Detiene el audio de la camara principal.
-		audio.Play();// Reproduce el audio del objeto que usa el script.
+		Camera.main.GetComponent<AudioSource>().Stop ();// Detiene el audio de la camara principal.
+		GetComponent<AudioSource>().Play();// Reproduce el audio del objeto que usa el script.
 		// Llama al metod que carga la scena, con un delay de la longitud del clip del boton.
-		Invoke ("CargarNivelJuego", audio.clip.length);
+		Invoke ("CargarNivelJuego", GetComponent<AudioSource>().clip.length);
 	}
 
 	void CargarNivelJuego(){
