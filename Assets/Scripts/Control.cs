@@ -16,15 +16,16 @@ public class Control : MonoBehaviour {
 	private Animator animator;
 	private bool corriendo = false;
 	public float velocidad = 1f;
+
 	void Awake(){
 		animator = GetComponent<Animator>();
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void FixedUpdate(){
 		if (corriendo) {
-			rigidbody2D.velocity = new Vector2 (velocidad, rigidbody2D.velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2 (velocidad, GetComponent<Rigidbody2D>().velocity.y);
 		}
-		animator.SetFloat ("VelX", rigidbody2D.velocity.x);
+		animator.SetFloat ("VelX", GetComponent<Rigidbody2D>().velocity.x);
 		enSuelo = Physics2D.OverlapCircle(comprobadorSuelo.position, comprobadorRadio, mascaraSuelo);
 		animator.SetBool("OnFloor", enSuelo);
 		if(enSuelo){
@@ -37,8 +38,8 @@ public class Control : MonoBehaviour {
 			if (corriendo) {
 			// Hacemos que salte si puede saltar
 				if (enSuelo || !dobleSalto) {
-					audio.Play ();
-					rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
+					GetComponent<AudioSource>().Play ();
+					GetComponent<Rigidbody2D>().velocity = new Vector2 (GetComponent<Rigidbody2D>().velocity.x, fuerzaSalto);
 					if (!dobleSalto && !enSuelo) {
 						dobleSalto = true;
 					}
@@ -51,8 +52,8 @@ public class Control : MonoBehaviour {
 			if (corriendo) {
 			// Hacemos que salte si puede saltar
 				if (enSuelo || !dobleSalto) {
-					audio.Play ();
-					rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
+					GetComponent<AudioSource>().Play ();
+					GetComponent<Rigidbody2D>().velocity = new Vector2 (GetComponent<Rigidbody2D>().velocity.x, fuerzaSalto);
 					if (!dobleSalto && !enSuelo) {
 						dobleSalto = true;
 					}
@@ -66,8 +67,8 @@ public class Control : MonoBehaviour {
 				if (corriendo) {
 				// Hacemos que salte si puede saltar
 					if (enSuelo || !dobleSalto) {
-						audio.Play ();
-						rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
+						GetComponent<AudioSource>().Play ();
+						GetComponent<Rigidbody2D>().velocity = new Vector2 (GetComponent<Rigidbody2D>().velocity.x, fuerzaSalto);
 						if (!dobleSalto && !enSuelo) {
 							dobleSalto = true;
 						}
@@ -77,6 +78,7 @@ public class Control : MonoBehaviour {
 					NotificationCenter.DefaultCenter ().PostNotification (this, "personajeCorriendo");
 				}
 		}
+	
 		//Termina Salto
 	}
 	//Update
@@ -85,8 +87,8 @@ public class Control : MonoBehaviour {
 		if (corriendo) {
 			// Hacemos que salte si puede saltar
 			if (enSuelo || !dobleSalto) {
-				audio.Play ();
-				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, fuerzaSalto);
+				GetComponent<AudioSource>().Play ();
+				GetComponent<Rigidbody2D>().velocity = new Vector2 (GetComponent<Rigidbody2D>().velocity.x, fuerzaSalto);
 				if (!dobleSalto && !enSuelo) {
 					dobleSalto = true;
 				}

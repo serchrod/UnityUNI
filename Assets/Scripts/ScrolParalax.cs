@@ -29,7 +29,7 @@ public class ScrolParalax : MonoBehaviour {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void Update () {
 		if (EnMoviento) {
-			renderer.material.mainTextureOffset = new Vector2(((Time.time - tiempoInico) * velocidad) %1, 0);
+			GetComponent<Renderer>().material.mainTextureOffset = new Vector2(((Time.time - tiempoInico) * velocidad) %1, 0);
 		}
 	}
 }

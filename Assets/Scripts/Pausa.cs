@@ -14,17 +14,17 @@ public class Pausa : MonoBehaviour {
 	void Update () {
 			if ((!pausa) && Input.GetKeyDown ( KeyCode.P)) {
 				Time.timeScale = 0;
-				audio.Pause();// Detiene el audio de la camara principal.
+				GetComponent<AudioSource>().Pause();// Detiene el audio de la camara principal.
 				pausa = true;
 				menuPausa.SetActive(pausa);
 			}else if ((pausa) && Input.GetKeyDown ( KeyCode.P)){
 				Time.timeScale = 1;
-				audio.Play();// Reproduce el audio del objeto que usa el script.
+				GetComponent<AudioSource>().Play();// Reproduce el audio del objeto que usa el script.
 				pausa = false;
 				menuPausa.SetActive(pausa);
 			}else if ((pausa) && Input.GetKeyDown ( KeyCode.Escape)){
 				Time.timeScale = 1;
-				audio.Play();// Reproduce el audio del objeto que usa el script.
+				GetComponent<AudioSource>().Play();// Reproduce el audio del objeto que usa el script.
 				pausa = false;
 				menuPausa.SetActive(pausa);
 			}
@@ -33,12 +33,12 @@ public class Pausa : MonoBehaviour {
 	public void Pausar(){
 		if (!pausa) {
 			Time.timeScale = 0;
-			audio.Pause();// Detiene el audio de la camara principal.
+			GetComponent<AudioSource>().Pause();// Detiene el audio de la camara principal.
 			pausa = true;
 			menuPausa.SetActive(pausa);
 		}else if (pausa){
 			Time.timeScale = 1;
-			audio.Play();// Reproduce el audio del objeto que usa el script.
+			GetComponent<AudioSource>().Play();// Reproduce el audio del objeto que usa el script.
 			pausa = false;
 			menuPausa.SetActive(pausa);
 		}
