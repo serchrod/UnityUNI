@@ -25,6 +25,7 @@ public class Boss : FSM {
 	public float Distancia = 0f;
 	public bool Pego = false;
 	public bool ataque = false;
+	public bool Disparo = false;
 	public float tiempo= 0.5f;
 	/* una vez declarado los atributos del antagonista se comienza a crear los estados de la maquina finita.
     sobreescribiremos el metodo que se encuentra en FSM(clase padre).
@@ -108,6 +109,10 @@ public class Boss : FSM {
 		transform.Translate(Vector3.left * Time.deltaTime * curspeed);
 		if (Vector2.Distance(transform.position, playerTransform.position)>= 16.0f){
 			estado = fsmState.stands;
+			Disparo=true;
+			animador.SetBool("Disparo",Disparo);
+			Disparo = false;
+			animador.SetBool ("Disparo", Disparo);
 			ShootBullet();
 		}
 	}
@@ -119,6 +124,7 @@ public class Boss : FSM {
 		ataque = false;
 		animador.SetBool ("Cerca",ataque);
 		animador.SetBool ("Pego",Pego);
+
 		if(Vector2.Distance(transform.position, playerTransform.position) <=15.0f){
 			estado = fsmState.persecusion;
 		}

@@ -91,7 +91,6 @@ public class Mover : MonoBehaviour {
 			{
 				muerte = true;
 				animacion.SetBool("Die",muerte);
-
 			}
 		}
 
