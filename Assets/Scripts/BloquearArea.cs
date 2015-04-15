@@ -19,7 +19,7 @@ public class BloquearArea : MonoBehaviour {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void Bloqueo() {
 		puntosAcumulados = EstadoMob.EstadoMobi.acumulado;
-		textoPuntajeRestante.text = "Puntaje restante: " + (limite-puntosAcumulados);
+		textoPuntajeRestante.text = (limite-puntosAcumulados)+ " Pts";
 		if(puntosAcumulados >= limite){
 			boton.enabled = true;
 			textoPuntaje.SetActive(false);

@@ -9,6 +9,7 @@ public class PuntuacionMob : MonoBehaviour {
 	int acumulado;
 	void Start () {
 		acumulado = EstadoMob.EstadoMobi.acumulado;
+        //acumulado = 0;
         Debug.Log("Acumulado: " + acumulado);
 		if(EstadoMob.EstadoMobi.dies > 1){
 			EstadoMob.EstadoMobi.dies-=1;
@@ -42,7 +43,7 @@ public class PuntuacionMob : MonoBehaviour {
 		int puntosAIncrementar = (int)notificacion.data;//Asigna el valor de los puntos a una variable entera.
 		puntuacion += puntosAIncrementar;//Se actualiza el valor de la puntuacion.
 		actualizarMarcador ();// Llama al metodo que actualiza el marcador.
-        acumulado += puntuacion;
+        acumulado += puntosAIncrementar;
         Debug.Log("Actualizacion de acumulado" + acumulado);
 	}
 	
